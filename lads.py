@@ -177,28 +177,13 @@ class LoveLangApp:
             self.show_question()
 
     def show_result(self):
-        top_lang = max(scores, key=scores.get)  # nentuin love lang yang dominan
-        character = li_mapping[top_lang]  # nentuin karakter berdasarkan love language dominan
-
-    # Menyembunyikan elemen yang tidak perlu
-        self.question_label.pack_forget()
-        for rb in self.radio_buttons:
-            rb.pack_forget()
-        self.next_btn.pack_forget()
-
-    # nampilin hasil
-        result_text = f"Love language dominanmu adalah: {top_lang}\n\nKarakter Love and DeepSpace yang cocok:\n{character}"
-        
-        self.result_label = tk.Label(self.master, text=result_text, wraplength=500,
-                                     font=("Roboto", 14, "bold"), fg="#4A148C", justify="left", bg="#f5f5f5")
-        self.result_label.pack(pady=20)
-        
-        self.exit_btn = tk.Button(self.master, text="Keluar", command=self.master.destroy,
-                                  bg="#880E4F", fg="white", font=("Roboto", 11),
-                                  activebackground="#AD1457", padx=10, pady=2, relief="raised")
-        self.exit_btn.pack(pady=20)
+        top_lang = max(scores, key=scores.get)
+        character = li_mapping[top_lang]
+        messagebox.showinfo("Hasil", f"Love language dominanmu adalah: {top_lang}\n\nKarakter Love and DeepSpace yang cocok:\n{character}")
+        self.master.destroy()
 
 # Run the GUI app
 root = tk.Tk()
 app = LoveLangApp(root)
 root.mainloop()
+    
